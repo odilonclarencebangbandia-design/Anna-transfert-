@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anna Transfert</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f4f7fb;
+      color: #222;
+    }
+
+    header {
+      background: #087f5b;
+      color: white;
+      padding: 22px 15px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 28px;
+      margin-bottom: 6px;
+    }
+
+    header p {
+      font-size: 14px;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: auto;
+      padding: 20px 15px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      margin-bottom: 18px;
+      border-radius: 15px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    }
+
+    .card h2 {
+      color: #087f5b;
+      margin-bottom: 15px;
+      font-size: 20px;
+    }
+
+    label {
+      display: block;
+      margin: 12px 0 6px;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 18px;
+      border: none;
+      border-radius: 8px;
+      background: #087f5b;
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #066b4d;
+    }
+
+    .operators {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .operator {
+      padding: 12px 5px;
+      background: #eef7f3;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: bold;
+      color: #087f5b;
+    }
+
+    .info {
+      background: #fff8e1;
+      padding: 12px;
+      border-radius: 8px;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #777;
+      font-size: 13px;
+    }
+
+    #resultat {
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 8px;
+      display: none;
+      background: #e8f5e9;
+      color: #087f5b;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Anna Transfert</h1>
+  <p>Transférez votre argent simplement et rapidement</p>
+</header>
+
+<div class="container">
+
+  <div class="card">
+    <h2>💸 Effectuer un transfert</h2>
+
+    <label>Pays de départ</label>
+    <select id="depart">
+      <option value="RCA">République centrafricaine</option>
+    </select>
+
+    <label>Pays destinataire</label>
+    <select id="destination">
+      <option value="">-- Choisir un pays --</option>
+      <option value="Cameroun">Cameroun</option>
+      <option value="Congo">Congo</option>
+      <option value="RDC">RDC</option>
+      <option value="Tchad">Tchad</option>
+      <option value="France">France</option>
+      <option value="Gabon">Gabon</option>
+      <option value="Autre">Autre pays</option>
+    </select>
+
+    <label>Montant</label>
+    <input type="number" id="montant" placeholder="Ex : 10000">
+
+    <label>Devise</label>
+    <select id="devise">
+      <option value="XAF">Franc CFA (XAF)</option>
+      <option value="EUR">Euro (EUR)</option>
+      <option value="USD">Dollar US (USD)</option>
+    </select>
+
+    <label>Numéro du bénéficiaire</label>
+    <input type="tel" id="numero" placeholder="Ex : 07 XX XX XX XX">
+
+    <label>Opérateur</label>
+
+    <div class="operators">
+      <div class="operator">Orange Money</div>
+      <div class="operator">Telecel</div>
+      <div class="operator">Pata Biani</div>
+    </div>
+
+    <button onclick="preparerTransfert()">
+      Continuer
+    </button>
+
+    <div id="resultat"></div>
+  </div>
+
+  <div class="card">
+    <h2>📱 Nos services</h2>
+
+    <p>✔ Transfert d'argent</p>
+    <br>
+    <p>✔ Envoi vers plusieurs pays</p>
+    <br>
+    <p>✔ Orange Money</p>
+    <br>
+    <p>✔ Telecel</p>
+    <br>
+    <p>✔ Pata Biani</p>
+  </div>
+
+  <div class="card">
+    <h2>🔐 Sécurité</h2>
+
+    <p>
+      Anna Transfert est conçu pour faciliter les transferts
+      d'argent. Les paiements réels nécessiteront une intégration
+      sécurisée avec les opérateurs et les prestataires de paiement.
+    </p>
+
+    <div class="info">
+      ⚠️ Cette version est une interface de démonstration.
+      Aucun argent réel n'est transféré pour le moment.
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  © 2026 Anna Transfert — Tous droits réservés
+</footer>
+
+<script>
+  function preparerTransfert() {
+
+    const destination =
+      document.getElementById("destination").value;
+
+    const montant =
+      document.getElementById("montant").value;
+
+    const numero =
+      document.getElementById("numero").value;
+
+    const resultat =
+      document.getElementById("resultat");
+
+    if (destination === "") {
+      resultat.style.display = "block";
+      resultat.style.background = "#ffebee";
+      resultat.style.color = "#c62828";
+      resultat.innerHTML =
+        "Veuillez choisir le pays destinataire.";
+      return;
+    }
+
+    if (montant === "" || montant <= 0) {
+      resultat.style.display = "block";
+      resultat.style.background = "#ffebee";
+      resultat.style.color = "#c62828";
+      resultat.innerHTML =
+        "Veuillez entrer un montant valide.";
+      return;
+    }
+
+    if (numero === "") {
+      resultat.style.display = "block";
+      resultat.style.background = "#ffebee";
+      resultat.style.color = "#c62828";
+      resultat.innerHTML =
+        "Veuillez entrer le numéro du bénéficiaire.";
+      return;
+    }
+
+    resultat.style.display = "block";
+    resultat.style.background = "#e8f5e9";
+    resultat.style.color = "#087f5b";
+
+    resultat.innerHTML =
+      "✅ Transfert préparé !<br><br>" +
+      "Destination : " + destination +
+      "<br>Montant : " + montant +
+      "<br>Bénéficiaire : " + numero +
+      "<br><br>Le paiement réel sera disponible après " +
+      "l'intégration sécurisée des opérateurs.";
+  }
+</script>
+
+</body>
+                           </html>
